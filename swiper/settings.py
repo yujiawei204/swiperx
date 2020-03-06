@@ -68,12 +68,12 @@ WSGI_APPLICATION = 'swiper.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.pymysql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'swiper',
-	'HOST': 'localhost',
-	'USER': 'root',
-	'PASSWORD': 0,
-	'PORT': 3306
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': 0,
+        'PORT': 3306
     }
 }
 
