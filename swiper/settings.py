@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +73,7 @@ DATABASES = {
         'NAME': 'swiper',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 0,
+        'PASSWORD': '111111',
         'PORT': 3306
     }
 }
