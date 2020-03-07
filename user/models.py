@@ -21,5 +21,16 @@ class User(models.Model):
     nickname = models.CharField(max_length=32, verbose_name='昵称')
     sex = models.CharField(max_length=8, choices=SEX, default='male', verbose_name='性别')
     birthday = models.DateField(default='1990-1-1', verbose_name='生日')
-    avatar = models.ImageField(max_length=256, verbose_name='头像')
+    avatar = models.CharField(max_length=256, verbose_name='头像')
     location = models.CharField(max_length=16, choices=LOCATION, default='北京', verbose_name='居住地')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'phonenum': self.phonenum,
+            'nickname': self.nickname,
+            'sex': self.sex,
+            'birthday': str(self.birthday),
+            'avatar': self.avatar,
+            'location': self.location,
+        }
