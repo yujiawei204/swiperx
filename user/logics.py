@@ -24,9 +24,12 @@ def send_vcode(phonenum):
     args['param'] = vcode
     args['mobile'] = phonenum
     response = requests.post(cfg.YZX_SMS_API, json=args)
-    print(args['mobile'])
+    # print(args['mobile'])
+
     if response.status_code != 200:
         return False
     else:
         cache.set(keys.VCODE % phonenum, vcode, 180)
+        # print(keys.VCODE % phonenum)
+
         return True

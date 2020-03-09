@@ -4,6 +4,7 @@ from django.core.cache import cache
 from common import keys
 from user.logics import send_vcode
 from user.models import User
+from user.models import Profile
 
 
 def get_vcode(request):
@@ -21,10 +22,11 @@ def submit_vcode(request):
     # 获取参数
     phonenum = request.POST.get('phonenum')
     vcode = request.POST.get('vcode')
-    print(vcode)
-    print(phonenum)
+    # print(vcode)
+    # print(phonenum)
+
     cached_vcode = cache.get(keys.VCODE % phonenum)
-    print(cached_vcode)
+    # print(cached_vcode)
 
     # 检查验证码
     if vcode and cached_vcode and vcode == cached_vcode:
@@ -40,3 +42,24 @@ def submit_vcode(request):
 
     else:
         return JsonResponse({'code': 1001, 'data': None})
+
+
+def get_profile(request):
+    '''获取个人交友资料'''
+    uid = request.session['uid']
+    # try:
+    #     profile = Profile.objects.get(id=uid)
+    # except Profile.DoesNotExist:
+    #     profile = Profile.objects.create(id=uid)
+    profile, _ = Profile.objects.get_or_create(id=uid)
+    return JsonResponse({'code':0, 'data':profile.to_dict()})
+
+
+def set_profile(request):
+    '''修改个人交友资料'''
+    pass
+
+
+def upload_avatar(request):
+    '''上传个人头像接口'''
+    pass

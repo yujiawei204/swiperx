@@ -19,4 +19,7 @@ from user import apis as user_api
 urlpatterns = [
     url(r'^user/get_vcode', user_api.get_vcode),
     url(r'^user/submit_vcode', user_api.submit_vcode),
+    url(r'user/get_profile',user_api.get_profile),
+    url(r'user/set_profile',user_api.set_profile),
+    url(r'user/upload_avatar',user_api.upload_avatar),
 ]
