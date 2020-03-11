@@ -33,3 +33,12 @@ def send_vcode(phonenum):
         # print(keys.VCODE % phonenum)
 
         return True
+
+
+def save_upload_avatar(uid, upload_avatar_file):
+    filename = 'Avatar-%s' % uid
+    filepath = '/tmp/%s' % filename
+
+    with open(filepath, 'wb') as fp:
+        for chunk in upload_avatar_file.chunks():
+            fp.write(chunk)

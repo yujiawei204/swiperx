@@ -3,7 +3,7 @@ from django.core.cache import cache
 
 from common import keys
 from common import stat
-from user.logics import send_vcode
+from user import logics
 from user.models import User
 from user.models import Profile
 from user.forms import UserForm
@@ -13,7 +13,7 @@ from user.forms import ProfileForm
 def get_vcode(request):
     '''用户获取验证码接口'''
     phonenum = request.GET.get('phonenum')
-    result = send_vcode(phonenum)
+    result = logics.send_vcode(phonenum)
     if result:
         return JsonResponse({'code': stat.OK, 'data': None})
     else:
@@ -87,8 +87,18 @@ def set_profile(request):
 
 def upload_avatar(request):
     '''上传个人头像接口'''
-    pass
 
+    # 取出文件对象
+    uid = request.session.get('uid')
+    avatar_file = request.FILES.get('avatar')
+
+    # 将文件对象保存到本地
+    logics.save_upload_avatar(uid, avatar_file)
+    # 将文件上传到文件云
+    # 保存文件的URL
+    # 删除本地文件
+
+    return JsonResponse({'code': stat.OK, 'data': None})
 
 
 
