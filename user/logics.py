@@ -1,3 +1,4 @@
+import os
 import random
 
 import requests
@@ -5,6 +6,9 @@ from django.core.cache import cache
 
 from swiper import cfg
 from common import keys
+from user.models import User
+from libs.qn_cloud import upload_to_qn
+from tasks import celery_app
 
 
 def gen_rand_code(length=6):
@@ -42,3 +46,23 @@ def save_upload_avatar(uid, upload_avatar_file):
     with open(filepath, 'wb') as fp:
         for chunk in upload_avatar_file.chunks():
             fp.write(chunk)
+
+    return filename, filepath
+
+
+@celery_app.task
+def upload_avatar(uid, avatar_file):
+    '''上传头像的过程'''
+    # 将文件对象保存到本地
+    filename, filepath = save_upload_avatar(uid, avatar_file)
+
+    # 将文件上传到文件云
+    avatar_url = upload_to_qn(filename, filepath)
+
+    # 保存文件的URL
+    user = User.objects.get(id=uid)
+    user.avatar = avatar_url
+    user.save()
+
+    # 删除本地文件
+    os.remove(filepath)

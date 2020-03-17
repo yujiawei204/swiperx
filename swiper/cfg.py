@@ -12,3 +12,8 @@ YZX_SMS_ARGS = {
     "mobile": None
 }
 
+# 七牛云配置
+QN_ACCESS_KEY = 'g8QCNMc5bwGbhIij55tiyBMlnOIeXcZ66WEvUxon'
+QN_SECRET_KEY = '3SuU9CANrvKCoOjd2jjeFB9IapjtZ5xCrj8losXn'
+QN_BASE_URL = 'http://q70isfwcf.bkt.clouddn.com'
+QN_BUCKET = 'swiperx'

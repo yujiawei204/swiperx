@@ -1,3 +1,5 @@
+import os
+
 from django.http import JsonResponse
 from django.core.cache import cache
 
@@ -92,11 +94,7 @@ def upload_avatar(request):
     uid = request.session.get('uid')
     avatar_file = request.FILES.get('avatar')
 
-    # 将文件对象保存到本地
-    logics.save_upload_avatar(uid, avatar_file)
-    # 将文件上传到文件云
-    # 保存文件的URL
-    # 删除本地文件
+    logics.upload_avatar.delay(uid, avatar_file)
 
     return JsonResponse({'code': stat.OK, 'data': None})
 
