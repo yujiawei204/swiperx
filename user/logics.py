@@ -51,7 +51,7 @@ def save_upload_avatar(uid, upload_avatar_file):
 
 
 @celery_app.task
-def upload_avatar(uid, avatar_file):
+def upload_avatar_celery(uid, avatar_file):
     '''上传头像的过程'''
     # 将文件对象保存到本地
     filename, filepath = save_upload_avatar(uid, avatar_file)

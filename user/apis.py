@@ -94,7 +94,7 @@ def upload_avatar(request):
     uid = request.session.get('uid')
     avatar_file = request.FILES.get('avatar')
 
-    logics.upload_avatar.delay(uid, avatar_file)
+    logics.upload_avatar_celery.delay(uid, avatar_file)
 
     return JsonResponse({'code': stat.OK, 'data': None})
 
