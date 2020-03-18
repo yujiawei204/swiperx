@@ -20,11 +20,13 @@ kombu==4.6.8
 parso==0.6.2
 pexpect==4.8.0
 pickleshare==0.7.5
+Pillow==7.0.0
 prompt-toolkit==3.0.3
 ptyprocess==0.6.0
 Pygments==2.5.2
 PyMySQL==0.9.3
 pytz==2019.3
+qiniu==7.2.7
 redis==3.4.1
 requests==2.23.0
 six==1.14.0

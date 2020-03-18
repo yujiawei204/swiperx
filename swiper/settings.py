@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +43,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'common.middleware.AuthMiddleware',
 ]
 
 ROOT_URLCONF = 'swiper.urls'
@@ -68,12 +70,12 @@ WSGI_APPLICATION = 'swiper.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.pymysql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'swiper',
-	'HOST': 'localhost',
-	'USER': 'root',
-	'PASSWORD': 0,
-	'PORT': 3306
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': '111111',
+        'PORT': 3306
     }
 }
 
